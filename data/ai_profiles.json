@@ -1,0 +1,5 @@
+{
+  "classic": {"name": "ZX / 1987", "description": "Random robot slot, probabilistic assembly and original order distribution", "decision_ticks": 1},
+  "tactician": {"name": "INSIGNIAN / Adaptive", "description": "Defend threatened bases, secure industry, reinforce and attack", "decision_ticks": 15, "defense_radius": 18, "assault_size": 4, "reserve": 6},
+  "siege": {"name": "INSIGNIAN / Siege", "description": "Heavy chassis, nuclear raids and aggressive base pressure", "decision_ticks": 12, "defense_radius": 12, "assault_size": 3, "reserve": 4}
+}

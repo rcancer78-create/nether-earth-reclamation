@@ -1,0 +1,26 @@
+; Nether Earth: Reclamation — native Godot project
+config_version=5
+
+[application]
+config/name="Nether Earth — Reclamation"
+config/icon="res://assets/icon.svg"
+run/main_scene="res://src/main.tscn"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/description="Native 3D robot strategy. Classic rules and a new campaign."
+
+[display]
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/size/window_width_override=1440
+window/size/window_height_override=810
+window/stretch/mode="canvas_items"
+
+[rendering]
+renderer/rendering_method="forward_plus"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+anti_aliasing/quality/msaa_3d=2
+environment/defaults/default_clear_color=Color(0.025, 0.04, 0.06, 1)
+
+[audio]
+driver/enable_input=false

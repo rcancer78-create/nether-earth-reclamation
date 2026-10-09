@@ -1,0 +1,48 @@
+name: Windows simulation and export
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache Godot 4.5.1 tools
+        uses: actions/cache@v4
+        with:
+          path: .tools
+          key: godot-windows-x64-4.5.1-${{ hashFiles('tools/setup.ps1', 'tools/fetch_windows_template.py') }}
+
+      - name: Install Godot and Windows export template
+        run: ./tools/setup.ps1
+
+      - name: Check Python tool syntax
+        run: python -m compileall -q tools
+
+      - name: Import, run headless simulation tests and export
+        run: ./tools/build.ps1
+
+      - name: Upload Windows release archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetherEarth-Windows-x64
+          path: build/NetherEarth-Windows-x64.zip
+          if-no-files-found: error
+          retention-days: 14
